@@ -3,7 +3,11 @@
 # imgcat if macos and you want rendering in terminal, feh if linux
 # mermaid.cli
 
-[[ type imgcat > /dev/null ]] && display_app="imgcat" || display_app="feh"
+if type imgcat > /dev/null; then
+  display_app="imgcat" 
+else
+  display_app="feh"
+fi
 
 # displays a generated chart from mermaid.  Call it like mercat mychart.mmd
 function mercat () {
