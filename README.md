@@ -9,13 +9,25 @@ All scripts are loaded via `dotfiles.sh` and can be switched on or off in that f
 - fzf
 - diff-so-fancy
 - zsh
+- mermaid.cli
+
+### Linux specific
+- keh
+
+### MacOs specific
+- imgcat
 
 ### Installing the dependencies on arch
 
 assuming zsh is already installed
 
+
+It might be nescary to set up global npm so that sudo isn't required. 
+
 ```
-sudo pacman -S fzf diff-so-fancy
+sudo pacman -S fzf diff-so-fancy, keh
+npm -g install mermaid.cli
+
 ```
 
 ## Installing
