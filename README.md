@@ -47,6 +47,7 @@ source /installpath/dotsfiles.sh
 ## Scripts
 - **git_branch_preview** Fuzzy search, preview and select a branch or tag in git
 - **git_commit_preview** Fuzzy search, preview and select a commit in git
+- **mercat** Display a graphical mermaid chart.  call via `mercat mychart.txt`
 
 ## Keybings
 - **ctrl-b** Fuzzy search, preview and select a branch or tag in git
