@@ -18,7 +18,7 @@ assuming zsh is already installed
 sudo pacman -S fzf diff-so-fancy
 ```
 
-## installing
+## Installing
 
 Clone locally
 
@@ -32,11 +32,11 @@ and reference the dotfile in ~/.zshrc
 source /installpath/dotsfiles.sh
 ```
 
-## scripts
+## Scripts
 - **git_branch_preview** Fuzzy search, preview and select a branch or tag in git
 - **git_commit_preview** Fuzzy search, preview and select a commit in git
 
-## keybings
+## Keybings
 - **ctrl-b** Fuzzy search, preview and select a branch or tag in git
 - **ctrl-b ctrl-b** Fuzzy search, preview and select a commit in git
 
