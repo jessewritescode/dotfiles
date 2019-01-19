@@ -1,5 +1,9 @@
 scriptpath=${0:a:h}
 
+# configs
+#   Requires: fd, fzf
+source ${scriptpath}/configs.sh
+
 # git scripts
 #   Provides: git_branch_preview, git_commit_preview
 #   Requires: fzf, diff-so-fancy
