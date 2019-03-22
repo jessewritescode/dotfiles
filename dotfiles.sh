@@ -14,18 +14,18 @@ source ${scriptpath}/gitscripts.sh
 #   Requires: mermaid.cli, either imgcat or feh
 source ${scriptpath}/chartutils.sh
 
+# Work paths ("export IS_WORK=" to turn on)
+[[ -v IS_WORK ]] && source ${scriptpath}/workpaths.sh
+
 # fuzzy search code
 findcode() {
   ag --nobreak --nonumbers --noheading . | fzf --delimiter=: --nth=2 --preview 'pygmentize -f terminal256 -O style=monokai -g {1}' | cut -d: -f1
 }
 
 # Keybindings
+bindkey -s '^z' 'fg\n' # since ^z swtiches out of vim into the terminal, this sends us back
 bindkey -s '^b' 'git_branch_preview\n'
 bindkey -s '^b^b' 'git_commit_preview\n'
 bindkey -s '^f' 'findcode\n'
-
-# run local ruby environemtn
-eval "$(rbenv init -)"
-
 
 
