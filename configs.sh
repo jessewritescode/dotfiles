@@ -12,6 +12,9 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 alias vi='nvim'
 
+alias cat='bat --style=plain --theme Nord'
+
+
 # run local ruby environment
 eval "$(rbenv init -)"
 
