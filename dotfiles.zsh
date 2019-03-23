@@ -1,24 +1,31 @@
-scriptpath=${0:a:h}
+source ${0:a:h}/dotfile_settings.zsh
+
+# uncomment the following, and run the command "zprof" to see performance statistics.
+# zmodload zsh/zprof
+
+# zsh plugins
+# requires git, zsh, zgen 
+source ${DOTFILES_CONFIG_PATH}/zsh_plugins.zsh
 
 # configs
 #   Requires: fd, fzf
-source ${scriptpath}/configs.sh
+source ${DOTFILES_CONFIG_PATH}/configs.zsh
 
 # git scripts
 #   Provides: git_branch_preview, git_commit_preview
 #   Requires: fzf, diff-so-fancy
-source ${scriptpath}/gitscripts.sh
+source ${DOTFILES_CONFIG_PATH}/gitscripts.zsh
 
 # chart utils
 #   Provides: mercat
 #   Requires: mermaid.cli, either imgcat or feh
-source ${scriptpath}/chartutils.sh
+source ${DOTFILES_CONFIG_PATH}/chartutils.zsh
 
 # file navigation /cat that sort of thing
-source ${scriptpath}/filenav.sh
+source ${DOTFILES_CONFIG_PATH}/filenav.zsh
 
 # Work paths ("export IS_WORK=" to turn on)
-[[ -v IS_WORK ]] && source ${scriptpath}/workpaths.sh
+[[ -v IS_WORK ]] && source ${DOTFILES_CONFIG_PATH}/workpaths.zsh
 
 
 # Keybindings

@@ -1,0 +1,6 @@
+
+export DOTFILES_PATH=${0:a:h}
+export DOTFILES_VENDOR_PATH="${DOTFILES_PATH}/vendor"
+export DOTFILES_BIN_PATH="${DOTFILES_PATH}/bin"
+export DOTFILES_CONFIG_PATH="${DOTFILES_PATH}/config"
+
