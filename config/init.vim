@@ -1,7 +1,15 @@
-" set dotfiles=$DOTFILES_VENDOR_PATH
-" set dotfiles .= '/vim'
-" set runtimepath^=$DOTFILES_VENDOR_PATH
-" let &packpath=&runtimepath
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'FooSoft/vim-argwrap'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'itchyny/lightline.vim'
+
+call plug#end()
+
 
 if exists('g:gui_oni')
     " Statements here

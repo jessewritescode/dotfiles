@@ -21,7 +21,6 @@ bat cache --source ${DOTFILES_VENDOR_PATH}/bat_themes --init
 
 #setup neovim
 ln -s ${DOTFILES_CONFIG_PATH}/init.vim ${HOME}/.config/nvim/init.vim
-local vimpath=${DOTFILES_VENDOR_PATH}/nvim/site
-mkdir -p ${vimpath}
-
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
