@@ -1,5 +1,5 @@
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'FooSoft/vim-argwrap'
 Plug 'tpope/vim-commentary'
