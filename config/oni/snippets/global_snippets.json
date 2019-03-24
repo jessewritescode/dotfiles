@@ -1,0 +1,38 @@
+{
+  "For_Loop": {
+    "prefix": "for",
+    "body": [
+      "for (const ${2:element} of ${1:array}) {",
+        "\t$0",
+        "}"
+    ],
+    "description": "For Loop"
+  },
+  "reduce": {
+    "prefix": "reduce",
+    "body": [
+      "${1:array}.reduce((${2:accumulator}, ${3:item}) => {",
+        "\t$0", 
+       "}, ${4:initialValue});"
+    ],
+    "description": "Array Reduce"
+   },
+   "it": {
+     "prefix": "it",
+     "body": [
+       "it('${1:statement}', () => {",
+       "\t$0",
+       "});"
+     ],
+     "description": "unit test it statement"
+   },
+   "describe": {
+     "prefix": "describe",
+     "body": [
+       "describe('${1:statement}', () => {",
+       "\t$0",
+       "});"
+     ],
+     "description": "unit test describe statement"
+   }
+}
