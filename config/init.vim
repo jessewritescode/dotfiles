@@ -26,10 +26,9 @@ if exists('g:gui_oni')
     set number
     set noswapfile
     set smartcase
-
-    " Enable GUI mouse behavior
-    set mouse=a
 endif
+
+set mouse=a
 
 " dont show mode line since we are using lightline
 set noshowmode

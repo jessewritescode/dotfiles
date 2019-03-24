@@ -12,6 +12,7 @@ zplug "plugins/yarn", from:oh-my-zsh
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
 zplug "geometry-zsh/geometry"
 
 if [[ "$(uname)" = "Darwin" ]]; then
