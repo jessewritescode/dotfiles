@@ -16,6 +16,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'itchyny/lightline.vim'
 Plug 'arcticicestudio/nord-vim'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'lfilho/cosco.vim'
+Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -24,12 +27,17 @@ if exists('g:gui_oni')
     " Statements here
     " init.vim
 
-    set number
     set noswapfile
     set smartcase
 endif
-
+set number
 set mouse=a
+
+" set eslint to be our ale fixer
+let g:ale_fixers = {
+ \ 'javascript': ['eslint']
+ \ }
+let g:ale_fix_on_save = 1
 
 " dont show mode line since we are using lightline
 set noshowmode
