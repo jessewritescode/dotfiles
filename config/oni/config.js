@@ -17,6 +17,7 @@ exports.deactivate = function (oni) {
 };
 exports.configuration = {
     //add custom config here, such as
+    "oni.hideMenu": true,
     "ui.colorscheme": "nord",
     "ui.animations.enabled": true,
     "ui.fontSmoothing": "auto",
@@ -24,7 +25,7 @@ exports.configuration = {
     "editor.quickOpen.execCommand": 'fzf -f ${searchString}',
     "tabs.mode": "native",
     "oni.useDefaultConfig": false,
-    "editor.fontFamily": "FiraCode-Light",
+    "editor.fontFamily": "Fira Code Retina",
     "experimental.vcs.sidebar": true,
     "autoClosingPairs.enabled": false,
     "statusbar.enabled": false

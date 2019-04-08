@@ -15,6 +15,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'itchyny/lightline.vim'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
@@ -39,6 +40,11 @@ set shiftwidth=2
 set expandtab
 let g:argwrap_tail_comma = 1
 let g:argwrap_padded_braces = '[{'
+
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ }
+
 
 " global remaps
 noremap <C-l> <C-w>l
