@@ -25,7 +25,7 @@ elif [[ $IS_LINUX ]]; then
 
   # get packages
   sudo pacman -S yaourt 
-  yaourt -S oni bat neovim rbenv fira-code kitty polybar the_silver_searcher rofi
+  yaourt -S oni bat neovim rbenv fira-code kitty polybar the_silver_searcher rofi python-neovim
 
   git clone https://github.com/0xdec/base16-rofi.git ${DOTFILES_VENDOR_PATH}/base16-rofi
   ln -s ${DOTFILES_VENDOR_PATH}/base16-rofi ~/.local/share/rofi/themes/
