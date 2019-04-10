@@ -46,7 +46,7 @@ Everything should use Nord. Everything. Nord. https://www.nordtheme.com/
 
 ## Disclaimer
 These configurations are mine, and are shared publicly with the consideration
-that other's may benefit from them.  It comes with no waranty, implied
+that others may benefit from them.  It comes with no waranty, implied
 or otherwise.  yada yada yada... don't run configs if you don't know
 what they do.  This could render your machine unusable.
 
