@@ -1,0 +1,6 @@
+alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
+alias vi='nvim'
+alias vim='nvim'
+alias cat='bat --style=plain --theme Nord'
+alias ls='ls -G'
+
