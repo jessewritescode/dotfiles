@@ -18,6 +18,7 @@ mkdir -p ${DOTFILES_BIN_PATH}
 if [[ $IS_MAC_OS ]]; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   brew install rbenv bat neovim oni
+  sudo pip2 install --upgrade neovim
 elif [[ $IS_LINUX ]]; then
   # set i3wm config
   mkdir -p ${HOME}/i3
