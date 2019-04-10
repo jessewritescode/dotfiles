@@ -97,8 +97,8 @@ nnoremap <leader>u :MundoToggle<CR>
 " insert mode leader maps
 autocmd FileType javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
 
-" {{ creates egyption case block
-imap <leader>{ {<CR>}<Esc>O
+" {{ creates egyptian case block
+imap {{ {<CR>}<Esc>O
 
 " jj easy escape in insert mode
 imap jj <Esc>
