@@ -1,3 +1,6 @@
+# Set paths
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
 # Get plugins
 source ~/.zplug/init.zsh
 
