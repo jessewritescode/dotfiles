@@ -2,7 +2,8 @@
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # install packages
-brew install rbenv bat neovim oni zsh
+brew install rbenv bat neovim zsh
+brew cask install oni
 sudo pip2 install --upgrade neovim
 
 # install zplug for zshplugins
