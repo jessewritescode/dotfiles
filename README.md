@@ -12,6 +12,15 @@ config config status.showUntrackedFiles no
 ```
 and then you may interact with it like `config add .zshrc`, `config commit -m ...` etc
 
+## MacOS & Linux (Manjaro)
+Any configuration that is universal should be in master, while specific MacOS and Linux configs 
+are kept in their own branches. Non-unique changes can be cherrypicked between each branch.  T
+switch between macos & linux
+```
+config checkout macos
+config checkout linux
+```
+
 ## Theme
 Everything should use Nord. Everything. Nord. https://www.nordtheme.com/
 
