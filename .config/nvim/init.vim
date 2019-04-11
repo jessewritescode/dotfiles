@@ -51,3 +51,57 @@ let g:ale_fixers = {
  \ 'javascript': ['eslint']
  \ }
 let g:ale_fix_on_save = 1
+
+" dont show mode line since we are using lightline
+set noshowmode
+
+filetype plugin indent on
+set tabstop=2
+set shiftwidth=2
+set expandtab
+let g:argwrap_tail_comma = 1
+let g:argwrap_padded_braces = '[{'
+
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ }
+
+" CtrlP settings
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
+" global remaps
+noremap <C-l> <C-w>l
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+
+" comma to toggle relative line numbers
+nnoremap <silent>, :call ToggleNumber()<cr>
+
+" normal moode leader maps
+nnoremap <silent> <leader>a :ArgWrap<CR>
+
+" comma insertion... TODO: doesn't work that well.
+autocmd FileType javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
+
+" easy save
+nnoremap <leader>s :w<cr>
+
+" better undo tree
+nnoremap <leader>u :MundoToggle<CR>
+
+" insert mode leader maps
+autocmd FileType javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
+
+" {{ creates egyptian case block
+imap {{ {<CR>}<Esc>O
+
+" jj easy escape in insert mode
+imap jj <Esc>
+
+" easy save
+inoremap <leader>s <C-c>:w<cr>
+
