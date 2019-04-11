@@ -5,13 +5,12 @@ My dotfiles, for both macos and arch.
 Installation will fail if files already exist, so check the code out to a
 temporary folder and then delete it.
 ```
-git clone --separate-git-dir=$HOME/.myconf /path/to/repo $HOME/myconf-tmp
+git clone --separate-git-dir=$HOME/.myconf git@github.com:jessewritescode/dotfiles.git $HOME/myconf-tmp
 rm -r ~/myconf-tmp/
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 config config status.showUntrackedFiles no
 ```
 and then you may interact with it like `config add .zshrc`, `config commit -m ...` etc
-
 
 ## Theme
 Everything should use Nord. Everything. Nord. https://www.nordtheme.com/
