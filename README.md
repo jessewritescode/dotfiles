@@ -17,8 +17,8 @@ Any configuration that is universal should be in master, while specific MacOS an
 are kept in their own branches. Non-unique changes can be cherrypicked between each branch.  T
 switch between macos & linux
 ```
-config branch macos
-config branch linux
+config checkout macos
+config checkout linux
 ```
 
 ## Theme
