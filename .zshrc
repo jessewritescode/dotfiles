@@ -27,6 +27,30 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
+
+# Custom plugin to show mode status on command line
+# Keep an eye onhttps://github.com/geometry-zsh/geometry/pull/184
+zle -N zle-keymap-select geometry_prompt_vi-mode_render
+geometry_prompt_vi-mode_setup() {}
+geometry_prompt_vi-mode_check() {}
+geometry_prompt_vi-mode_render() {
+  # Removes previously state
+  RPROMPT=${${RPROMPT/\[%{$fg[blue]%}INSERT%{$fg[grey]%}\] /}/\[%{$fg[yellow]%}NORMAL%{$fg[grey]%}\] /}
+  # swaps main/INSERT, vicmd/NORMAL
+  local KEY=${${KEYMAP/main/%{$fg[blue]%}INSERT}/vicmd/%{$fg[yellow]%}NORMAL}
+  # Formats RPROMPT with mode + rest of prompt
+  RPROMPT="%{$fg[grey]%}[$KEY%{$fg[grey]%}] $RPROMPT"
+  # Resets prompt
+  zle && zle reset-prompt
+}
+
+
+# use vi mode for movement on the cli
+bindkey -v 
+
+# and change the timeout for moving between modes from 0.4 -> 0.1s
+export KEYTIMEOUT=1
+
 # Shared zsh history
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
