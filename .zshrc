@@ -45,11 +45,14 @@ geometry_prompt_vi-mode_render() {
 }
 
 
-# use vi mode for movement on the cli
+# use vi mode for movement on the ndkey -M viins 'jj' vi-cmd-modebindkey -M viins 'jj' vi-cmd-modecli
 bindkey -v 
 
-# and change the timeout for moving between modes from 0.4 -> 0.1s
-export KEYTIMEOUT=1
+# use my fav jj for esc in vi mode
+bindkey -M viins 'jj' vi-cmd-mode
+
+# reduce the timeout for moving between modes
+export KEYTIMEOUT=30
 
 # Shared zsh history
 HISTSIZE=5000
