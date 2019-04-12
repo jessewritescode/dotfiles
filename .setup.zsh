@@ -1,3 +1,7 @@
+# install packages
+sudo pacman -S yaourt 
+yaourt -S oni bat neovim rbenv fira-code kitty polybar the_silver_searcher rofi python-neovim
+
 # install zplug for zshplugins
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
