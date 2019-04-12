@@ -29,6 +29,8 @@ if exists('g:gui_oni')
     set smartcase
 endif
 
+" set color scheme
+colorscheme nord
 
 " toggle between number and relativenumber
 function! ToggleNumber()
