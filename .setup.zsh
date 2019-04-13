@@ -1,6 +1,6 @@
 # install packages
 sudo pacman -S yaourt 
-yaourt -S oni bat neovim rbenv fira-code kitty polybar the_silver_searcher rofi python-neovim
+yaourt -S oni bat neovim rbenv fira-code kitty polybar the_silver_searcher rofi python-neovim zathura zathura-pdf-mupdf zathura-djvu zathura-ps zathura-cb 
 
 # install brew package manager
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
