@@ -23,6 +23,13 @@ Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'mattn/emmet-vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'wokalski/autocomplete-flow'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 
 call plug#end()
 
@@ -31,7 +38,7 @@ if exists('g:gui_oni')
 	set noswapfile
 	set smartcase
 else
-  " settings specific to not oni
+  " settings specific 10to not oni
 	" start nerd-tree if no files were specified on startup
 	autocmd StdinReadPre * let s:std_in=1
 	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -100,9 +107,22 @@ set expandtab
 let g:argwrap_tail_comma = 1
 let g:argwrap_padded_braces = '[{'
 
+" configure lightline
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ }
+let g:user_emmet_leader_key='<Tab>'
+
+" configure emmet
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+    \      'extends' : 'jsx',
+    \  },
+  \}
+
+" configure completion
+let g:deoplete#enable_at_startup = 1
+
 
 " CtrlP settings
 let g:ctrlp_match_window = 'bottom,order:ttb'
