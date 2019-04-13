@@ -23,6 +23,13 @@ Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'mattn/emmet-vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'wokalski/autocomplete-flow'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 
 call plug#end()
 
@@ -100,9 +107,21 @@ set expandtab
 let g:argwrap_tail_comma = 1
 let g:argwrap_padded_braces = '[{'
 
+" configure lightline
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ }
+
+" configure emmet
+let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+    \      'extends' : 'jsx',
+    \  },
+  \}
+
+" configure completion
+let g:deoplete#enable_at_startup = 1
 
 " CtrlP settings
 let g:ctrlp_match_window = 'bottom,order:ttb'

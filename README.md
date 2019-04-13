@@ -26,7 +26,6 @@ Everything should use Nord. Everything. Nord. https://www.nordtheme.com/
 
 ## TODO
 - Migrate setup scripts
-- Create a branch for OSX
 - Ccreate a branch for arch/linux
 - Reconfigure dunst since I seem to have lost my config
 - Verify that setups work on a new install
