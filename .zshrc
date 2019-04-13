@@ -1,5 +1,5 @@
 # Set paths
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/npmlocal/bin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.npmlocal/bin
 export NODE_PATH=$NODE_PATH:$HOME/.npmlocal/lib/node_modules
 
 # Get plugins
