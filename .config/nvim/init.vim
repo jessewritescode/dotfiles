@@ -155,7 +155,6 @@ endif
 
 let g:neosnippet#enable_snipmate_compatibility = 1
 
-
 " global remaps
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h

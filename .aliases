@@ -1,4 +1,5 @@
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
+alias masterconfig='config checkout master; config cherry-pick -x linux; config push; config checkout linux;'
 alias vi='nvim'
 alias vim='nvim'
 alias cat='bat --style=plain --theme Nord'
