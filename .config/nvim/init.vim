@@ -45,6 +45,10 @@ else
 	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 endif
 
+" nerdTree
+nmap <silent>tt :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen=1
+
 " NERDTrees File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
 	exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -121,15 +125,14 @@ let g:user_emmet_settings = {
     \  },
   \}
 
-" configure completion
-let g:deoplete#enable_at_startup = 1
-
-
 " CtrlP settings
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
+" configure completion
+let g:deoplete#enable_at_startup = 1
 
 " snippets
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -151,7 +154,6 @@ if has('conceal')
 endif
 
 let g:neosnippet#enable_snipmate_compatibility = 1
-
 
 " global remaps
 noremap <C-l> <C-w>l
