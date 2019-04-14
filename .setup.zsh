@@ -13,6 +13,13 @@ brew install rbenv bat neovim zsh
 brew cask install oni
 sudo pip2 install --upgrade neovim
 
+# nerd fonts for icons in nerd tree
+brew tap caskroom/fonts
+brew cask install font-hack-nerd-font<Paste>
+
+# this might be all thats needed to enable python 3 in macos vim?
+pip3 install --user pynvim
+
 # setup npm and fetch packages
 mkdir -p ~/.npmlocal
 npm config set prefix ~/.npmlocal
