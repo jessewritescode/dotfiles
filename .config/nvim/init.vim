@@ -44,6 +44,10 @@ else
 	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 endif
 
+" nerdTree
+nmap <silent>tt :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen=1
+
 " NERDTrees File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
 	exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -120,15 +124,35 @@ let g:user_emmet_settings = {
     \  },
   \}
 
-" configure completion
-let g:deoplete#enable_at_startup = 1
-
-
 " CtrlP settings
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
+" configure completion
+let g:deoplete#enable_at_startup = 1
+
+" snippets
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+let g:neosnippet#enable_snipmate_compatibility = 1
 
 " global remaps
 noremap <C-l> <C-w>l
