@@ -55,6 +55,12 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
 	exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
+" Obey gitignore
+let g:NERDTreeShowIgnoredStatus = 1
+" Gitignore doesn't seem to actually work properly in nerdtree at this
+" point.  this cuts out a lot of what I don't want.
+let NERDTreeIgnore=['node_modules/*', 'coverage/*', 'lib/*', 'build/*']
+
 call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
 call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
 call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
