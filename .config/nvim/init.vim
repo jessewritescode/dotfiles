@@ -31,6 +31,7 @@ Plug 'wokalski/autocomplete-flow'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
+Plug 'mhinz/vim-grepper'
 
 call plug#end()
 
@@ -44,6 +45,15 @@ else
 	autocmd StdinReadPre * let s:std_in=1
 	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 endif
+
+" search (vimgrep)
+let g:grepper = {}
+let g:grepper.tools = ["rg"]
+runtime autoload/grepper.vim
+let g:grepper.jump = 1
+nnoremap <leader>g :GrepperRg<Space>
+nnoremap gr :Grepper -cword -noprompt<CR>
+xmap gr <plug>(GrepperOperator)
 
 " nerdTree
 nmap <silent>tt :NERDTreeToggle<CR>
@@ -115,6 +125,10 @@ filetype plugin indent on
 set tabstop=2
 set shiftwidth=2
 set expandtab
+
+" So vim-json doesn't hide quotation marks (how is this not default?)
+set conceallevel=0
+
 let g:argwrap_tail_comma = 1
 let g:argwrap_padded_braces = '[{'
 
