@@ -9,7 +9,7 @@ npm install -g nwb
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # install packages
-brew install rbenv bat neovim zsh
+brew install rbenv bat neovim zsh ripgrep
 brew cask install oni
 sudo pip2 install --upgrade neovim
 
