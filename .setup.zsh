@@ -9,8 +9,8 @@ npm install -g nwb
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # install packages
-brew install rbenv bat neovim zsh ripgrep
-brew cask install oni
+brew install rbenv bat neovim zsh ripgrep watchman tmux 
+brew cask install oni visual-studio-code
 sudo pip2 install --upgrade neovim
 
 # nerd fonts for icons in nerd tree

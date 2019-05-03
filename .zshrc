@@ -7,7 +7,6 @@ source ~/.zplug/init.zsh
 
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/pip", from:oh-my-zsh
-zplug "plugins/lein", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/python", from:oh-my-zsh
@@ -28,7 +27,6 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
-
 # Custom plugin to show mode status on command line
 # Keep an eye onhttps://github.com/geometry-zsh/geometry/pull/184
 zle -N zle-keymap-select geometry_prompt_vi-mode_render
@@ -44,7 +42,6 @@ geometry_prompt_vi-mode_render() {
   # Resets prompt
   zle && zle reset-prompt
 }
-
 
 # use vi mode for movement on the ndkey -M viins 'jj' vi-cmd-modebindkey -M viins 'jj' vi-cmd-modecli
 bindkey -v 
@@ -66,6 +63,11 @@ setopt incappendhistory
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
+# fuzzy search code
+findcode() {
+  ag --nobreak --nonumbers --noheading --ignore=*.test.js . | fzf --delimiter=: --nth=2 --preview 'bat --color=always --style=plain --theme Nord {1}' | cut -d: -f1
+}
 
 # run local ruby environment
 eval "$(rbenv init -)"
@@ -101,3 +103,11 @@ export NVM_DIR="$HOME/.nvm"
 
 # source aliases
 source "$HOME/.aliases"
+
+# key bindings
+bindkey -s '^f' 'findcode\n'
+bindkey -s '^z' 'fg\n'
+
+# Finally load local configs (configs that aren't committed to
+# git, if you have them.
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local

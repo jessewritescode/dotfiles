@@ -32,6 +32,7 @@ Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
 Plug 'mhinz/vim-grepper'
+Plug 'tpope/vim-abolish'
 
 call plug#end()
 
@@ -47,17 +48,27 @@ else
 endif
 
 " search (vimgrep)
-let g:grepper = {}
-let g:grepper.tools = ["rg"]
-runtime autoload/grepper.vim
-let g:grepper.jump = 1
-nnoremap <leader>g :GrepperRg<Space>
-nnoremap gr :Grepper -cword -noprompt<CR>
-xmap gr <plug>(GrepperOperator)
+" let g:grepper = {}
+" let g:grepper.ag = { 'grepprg': 'ag --vimgrep --ignore "/(^|\/)(lib\/|node_modules|bin\/|vendor\/|build\/)/"' }
+" nnoremap <leader>g :Grepper -cword -noprompt -tool ag<CR>
+
+" Plug 'mhinz/vim-grepper'
+" let g:grepper = {}
+" let g:grepper.tools = ["rg"]
+" runtime autoload/grepper.vim
+" nnoremap <leader>g :GrepperRg<Space>
+" nnoremap gr :Grepper -cword -noprompt<CR>
+
+nnoremap <leader>g :Grepper -tool git<cr>
+nnoremap <leader>G :Grepper -tool ag<cr>
+
+nmap gs <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
 
 " nerdTree
 nmap <silent>tt :NERDTreeToggle<CR>
-let NERDTreeQuitOnOpen=1
+" let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=1
 
 " NERDTrees File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
@@ -159,19 +170,11 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+" use tabs
+imap <expr><TAB>
+	 \ neosnippet#expandable_or_jumpable() ?
+	 \    "\<Plug>(neosnippet_expand_or_jump)" :
+         \ 	  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 let g:neosnippet#enable_snipmate_compatibility = 1
 
@@ -208,3 +211,5 @@ imap jj <Esc>
 " easy save
 inoremap <leader>s <C-c>:w<cr>
 
+" jump via ctags
+nnoremap <leader>. :CtrlPTag<cr>
