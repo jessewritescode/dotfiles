@@ -33,6 +33,7 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
 Plug 'mhinz/vim-grepper'
 Plug 'tpope/vim-abolish'
+Plug 'soramugi/auto-ctags.vim'
 
 call plug#end()
 

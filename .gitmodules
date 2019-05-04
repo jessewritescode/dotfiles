@@ -1,0 +1,4 @@
+[submodule ".config-packages/ctags-patterns-for-javascript"]
+	path = .config-packages/ctags-patterns-for-javascript
+	url = https://github.com/romainl/ctags-patterns-for-javascript.git
+  ignore = all

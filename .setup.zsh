@@ -26,6 +26,9 @@ npm config set prefix ~/.npmlocal
 
 npm install -g nwb
 
+# build javascript ctags
+(cd ~/.config-packages/ctags-patterns-for-javascript && make tags)
+
 # install brew package manager
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
