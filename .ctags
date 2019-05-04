@@ -1,4 +1,3 @@
---options=~/Users/jesse.chilcott/.config-packages/ctags-patterns-for-javascript/ctagsrc
 --recurse=yes
 --exclude=.git
 --exclude=vendor/*
