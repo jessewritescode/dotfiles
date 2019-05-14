@@ -93,6 +93,9 @@ setopt incappendhistory
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
+# fix: (eval):setopt:3: no such option: NO_warnnestedvar
+_comp_options="${_comp_options/NO_warnnestedvar/}"
+
 # run local ruby environment
 eval "$(rbenv init -)"
 
