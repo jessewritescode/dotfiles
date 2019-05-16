@@ -34,6 +34,7 @@ Plug 'honza/vim-snippets'
 Plug 'mhinz/vim-grepper'
 Plug 'tpope/vim-abolish'
 Plug 'soramugi/auto-ctags.vim'
+Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 
@@ -43,9 +44,6 @@ if exists('g:gui_oni')
 	set smartcase
 else
   " settings specific to not oni
-	" start nerd-tree if no files were specified on startup
-	autocmd StdinReadPre * let s:std_in=1
-	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 endif
 
 " search (vimgrep)
@@ -81,7 +79,7 @@ endfunction
 let g:NERDTreeShowIgnoredStatus = 1
 " Gitignore doesn't seem to actually work properly in nerdtree at this
 " point.  this cuts out a lot of what I don't want.
-let NERDTreeIgnore=['node_modules/*', 'coverage/*', 'lib/*', 'build/*']
+let NERDTreeIgnore=['node_modules/*', 'coverage/*', 'build/*']
 
 call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
 call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
