@@ -15,6 +15,7 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "geometry-zsh/geometry"
+zplug "Tarrasch/zsh-autoenv"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
