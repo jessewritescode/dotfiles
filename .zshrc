@@ -1,36 +1,54 @@
-# Uncomment the line below and the line zprof a the end of this file
-# to profile the start time
-# zmodload zsh/zprof
+# Uncomment the line below to profile startup times
+# STARTUP_PROFILE=1
 
+[[ -v STARTUP_PROFILE ]] && zmodload zsh/zprof
+
+###############################################################################
 # Set paths
+###############################################################################
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.npmlocal/bin
 export NODE_PATH=$NODE_PATH:$HOME/.npmlocal/lib/node_modules
 
-# Get plugins
-source ~/.zplug/init.zsh
+###############################################################################
+# Plugins
+###############################################################################
+. ~/.zplugin/bin/zplugin.zsh
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/pip", from:oh-my-zsh
-zplug "plugins/command-not-found", from:oh-my-zsh
-zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "plugins/python", from:oh-my-zsh
-zplug "plugins/yarn", from:oh-my-zsh
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "geometry-zsh/geometry"
-zplug "Tarrasch/zsh-autoenv"
+ZPLGM[MUTE_WARNINGS]=1
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
+setopt promptsubst
 
-# Then, source plugins and add commands to $PATH
-zplug load
+# Actual plugins.
+zplugin ice 
+zplugin light geometry-zsh/geometry
+
+zplugin ice wait"0" atload"unalias grv" lucid
+zplugin snippet OMZ::plugins/git/git.plugin.zsh
+
+zplugin ice wait"0" lucid
+zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+
+zplugin ice wait"0" lucid
+zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+
+zplugin ice wait'0' lucid
+zplugin light zsh-users/zsh-completions
+
+zplugin ice wait"0" lucid
+zplugin light Tarrasch/zsh-autoenv
+
+zplugin ice wait"0" atinit"zpcompinit" lucid
+zplugin light zdharma/fast-syntax-highlighting
+
+# eof plugins
+
+autoload -Uz compinit
+
+###############################################################################
+# Prompt Styling
+###############################################################################
 
 # Custom plugin to show mode status on command line
 # Keep an eye onhttps://github.com/geometry-zsh/geometry/pull/184
@@ -121,5 +139,9 @@ bindkey -s '^z' 'fg\n'
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 # uncomment to profile
-# zprof
+if [ -v STARTUP_PROFILE ]; then
+  tmpfile=$(mktemp)
+  zprof > ${tmpfile}
+  echo "Startup profiling written to: ${tmpfile}"
+fi
 
