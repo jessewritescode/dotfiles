@@ -18,7 +18,7 @@ brew tap caskroom/fonts
 brew cask install font-hack-nerd-font<Paste>
 
 # this might be all thats needed to enable python 3 in macos vim?
-pip3 install --user pynvim
+pip3 install --user pynvim tmuxp
 
 # setup npm and fetch packages
 mkdir -p ~/.npmlocal
