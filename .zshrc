@@ -1,3 +1,7 @@
+# Uncomment the line below and the line zprof a the end of this file
+# to profile the start time
+# zmodload zsh/zprof
+
 # Set paths
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.npmlocal/bin
 export NODE_PATH=$NODE_PATH:$HOME/.npmlocal/lib/node_modules
@@ -70,14 +74,6 @@ findcode() {
   ag --nobreak --nonumbers --noheading --ignore=*.test.js . | fzf --delimiter=: --nth=2 --preview 'bat --color=always --style=plain --theme Nord {1}' | cut -d: -f1
 }
 
-# run local ruby environment
-eval "$(rbenv init -)"
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 export VISUAL=nvim
 export EDITOR="${VISUAL}"
 export BROWSER=google-chrome-stable
@@ -103,10 +99,15 @@ _comp_options="${_comp_options/NO_warnnestedvar/}"
 # run local ruby environment
 eval "$(rbenv init -)"
 
-# NVM
+# Lazy load NVM (becuase its slow)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm_load () {
+  . $NVM_DIR/nvm.sh
+  . $NVM_DIR/bash_completion
+}
+alias node='unalias nvm; unalias node; unalias npm; nvm_load; node $@'
+alias npm='unalias nvm; unalias node; unalias npm; nvm_load; npm $@'
+alias nvm='unalias nvm; unalias node; unalias npm; nvm_load; nvm $@'
 
 # source aliases
 source "$HOME/.aliases"
@@ -118,3 +119,7 @@ bindkey -s '^z' 'fg\n'
 # Finally load local configs (configs that aren't committed to
 # git, if you have them.
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# uncomment to profile
+# zprof
+
