@@ -22,8 +22,8 @@ npm install -g nwb
 # install brew package manager
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# install zplug for zshplugins
-curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+# install zplugin zsh plugins
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
 
 # source zshrc to continue installing zsh plugins
 source ~/.zshrc
