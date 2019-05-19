@@ -10,6 +10,31 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.npmlocal/bin
 export NODE_PATH=$NODE_PATH:$HOME/.npmlocal/lib/node_modules
 
 ###############################################################################
+# options
+###############################################################################
+# Shared zsh history
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=5000
+setopt appendhistory
+setopt sharehistory
+setopt incappendhistory
+
+# Apparently used by plugins
+setopt promptsubst
+
+# So window names display properly in tmux
+export DISABLE_AUTO_TITLE=true
+
+# fix: (eval):setopt:3: no such option: NO_warnnestedvar
+_comp_options="${_comp_options/NO_warnnestedvar/}"
+
+# default apps
+export VISUAL=nvim
+export EDITOR="${VISUAL}"
+export BROWSER=google-chrome-stable
+
+###############################################################################
 # Plugins
 ###############################################################################
 . ~/.zplugin/bin/zplugin.zsh
@@ -17,8 +42,6 @@ autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
 ZPLGM[MUTE_WARNINGS]=1
-
-setopt promptsubst
 
 # Actual plugins.
 zplugin ice 
@@ -43,13 +66,11 @@ zplugin ice wait"0" atinit"zpcompinit" lucid
 zplugin light zdharma/fast-syntax-highlighting
 
 # eof plugins
-
 autoload -Uz compinit
 
 ###############################################################################
 # Prompt Styling
 ###############################################################################
-
 # Custom plugin to show mode status on command line
 # Keep an eye onhttps://github.com/geometry-zsh/geometry/pull/184
 zle -N zle-keymap-select geometry_prompt_vi-mode_render
@@ -66,23 +87,6 @@ geometry_prompt_vi-mode_render() {
   zle && zle reset-prompt
 }
 
-# use vi mode for movement on the ndkey -M viins 'jj' vi-cmd-modebindkey -M viins 'jj' vi-cmd-modecli
-bindkey -v 
-
-# use my fav jj for esc in vi mode
-bindkey -M viins 'jj' vi-cmd-mode
-
-# reduce the timeout for moving between modes
-export KEYTIMEOUT=30
-
-# Shared zsh history
-HISTSIZE=5000
-HISTFILE=~/.zsh_history
-SAVEHIST=5000
-setopt appendhistory
-setopt sharehistory
-setopt incappendhistory
-
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
@@ -92,27 +96,9 @@ findcode() {
   ag --nobreak --nonumbers --noheading --ignore=*.test.js . | fzf --delimiter=: --nth=2 --preview 'bat --color=always --style=plain --theme Nord {1}' | cut -d: -f1
 }
 
-export VISUAL=nvim
-export EDITOR="${VISUAL}"
-export BROWSER=google-chrome-stable
-
-# history 
-HISTSIZE=5000
-HISTFILE=~/.zsh_history
-SAVEHIST=5000
-setopt appendhistory
-setopt sharehistory
-setopt incappendhistory
-
-# FZF
+## FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-
-# So window names display properly in tmux
-export DISABLE_AUTO_TITLE=true
-
-# fix: (eval):setopt:3: no such option: NO_warnnestedvar
-_comp_options="${_comp_options/NO_warnnestedvar/}"
 
 # run local ruby environment
 eval "$(rbenv init -)"
@@ -127,9 +113,14 @@ alias node='unalias nvm; unalias node; unalias npm; nvm_load; node $@'
 alias npm='unalias nvm; unalias node; unalias npm; nvm_load; npm $@'
 alias nvm='unalias nvm; unalias node; unalias npm; nvm_load; nvm $@'
 
+eval $(thefuck --alias)
+
 # source aliases
 source "$HOME/.aliases"
 
+###############################################################################
+# Key bindings
+###############################################################################
 # key bindings
 bindkey -s '^f' 'findcode\n'
 bindkey -s '^z' 'fg\n'
@@ -138,7 +129,7 @@ bindkey -s '^z' 'fg\n'
 # git, if you have them.
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-# uncomment to profile
+# Profiling
 if [ -v STARTUP_PROFILE ]; then
   tmpfile=$(mktemp)
   zprof > ${tmpfile}
