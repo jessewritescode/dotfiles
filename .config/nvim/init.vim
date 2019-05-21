@@ -46,23 +46,26 @@ else
   " settings specific to not oni
 endif
 
-" search (vimgrep)
-" let g:grepper = {}
-" let g:grepper.ag = { 'grepprg': 'ag --vimgrep --ignore "/(^|\/)(lib\/|node_modules|bin\/|vendor\/|build\/)/"' }
-" nnoremap <leader>g :Grepper -cword -noprompt -tool ag<CR>
+let g:grepper = {}
+let g:grepper.tools = ["rg", "notests"]
+let g:grepper.notests = { 'grepprg': 'rg -H --no-heading --vimgrep --type-not tests' . (has('win32') ? ' $* .' : ''),
+  \ 'grepformat': '%f:%l:%c:%m',
+  \ 'escape':     '\^$.*+?()[]{}|' }
 
-" Plug 'mhinz/vim-grepper'
-" let g:grepper = {}
-" let g:grepper.tools = ["rg"]
-" runtime autoload/grepper.vim
-" nnoremap <leader>g :GrepperRg<Space>
-" nnoremap gr :Grepper -cword -noprompt<CR>
+runtime autoload/grepper.vim
+nnoremap <leader>g :GrepperRg<Space>
+nnoremap gr :Grepper -cword -noprompt<CR>
 
-nnoremap <leader>g :Grepper -tool git<cr>
-nnoremap <leader>G :Grepper -tool ag<cr>
+nnoremap <leader>g :Grepper -tool rg<cr>
+nnoremap <leader>G :Grepper -tool rg<cr>
 
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
+
+augroup vimrcQfClose
+  autocmd!
+  autocmd FileType qf if mapcheck('<esc>', 'n') ==# '' | nnoremap <buffer><silent> <esc> :cclose<bar>lclose<CR> | endif
+augroup END
 
 " nerdTree
 nmap <silent>tt :NERDTreeToggle<CR>
@@ -156,10 +159,10 @@ let g:user_emmet_settings = {
   \}
 
 " CtrlP settings
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --ignore "node_modules" --nocolor -g ""'
+endif
 
 " configure completion
 let g:deoplete#enable_at_startup = 1
