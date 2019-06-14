@@ -4,4 +4,11 @@ alias vi='nvim'
 alias vim='nvim'
 alias cat='bat --style=plain --theme Nord'
 alias ls='ls -G'
+alias sprnpm='cp ~/.npmrc{_spr,}'
+alias sprnpmclear='rm ~/.npmrc'
+alias npmscripts='jq -r ".scripts | to_entries[] | \"$(tput bold)$(tput setaf 2)\(.key)$(tput sgr0)\t$(tput setaf 4)\(.value)$(tput sgr0)\"" package.json | expand -t 30'
+alias npmdeps='jq -r ".dependencies | to_entries[] | \"$(tput bold)$(tput setaf 2)\(.key)$(tput sgr0)\t$(tput setaf 4)\(.value)$(tput sgr0)\"" package.json | expand -t 35'
+alias npmdevdeps='jq -r ".devDependencies | to_entries[] | \"$(tput bold)$(tput setaf 2)\(.key)$(tput sgr0)\t$(tput setaf 4)\(.value)$(tput sgr0)\"" package.json | expand -t 35'
+alias ctags="$(brew --prefix)/bin/ctags --options=${HOME}/.config-packages/ctags-patterns-for-javascript/ctagsrc"
+alias txconfig='tmuxp load -y ~/.tmuxp.yaml'
 

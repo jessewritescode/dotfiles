@@ -31,6 +31,10 @@ Plug 'wokalski/autocomplete-flow'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
+Plug 'mhinz/vim-grepper'
+Plug 'tpope/vim-abolish'
+Plug 'soramugi/auto-ctags.vim'
+Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 
@@ -39,21 +43,46 @@ if exists('g:gui_oni')
 	set noswapfile
 	set smartcase
 else
-  " settings specific 10to not oni
-	" start nerd-tree if no files were specified on startup
-	autocmd StdinReadPre * let s:std_in=1
-	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+  " settings specific to not oni
 endif
+
+let g:grepper = {}
+let g:grepper.tools = ["rg", "notests"]
+let g:grepper.notests = { 'grepprg': 'rg -H --no-heading --vimgrep --type-not tests' . (has('win32') ? ' $* .' : ''),
+  \ 'grepformat': '%f:%l:%c:%m',
+  \ 'escape':     '\^$.*+?()[]{}|' }
+
+runtime autoload/grepper.vim
+nnoremap <leader>g :GrepperRg<Space>
+nnoremap gr :Grepper -cword -noprompt<CR>
+
+nnoremap <leader>g :Grepper -tool rg<cr>
+nnoremap <leader>G :Grepper -tool rg<cr>
+
+nmap gs <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
+
+augroup vimrcQfClose
+  autocmd!
+  autocmd FileType qf if mapcheck('<esc>', 'n') ==# '' | nnoremap <buffer><silent> <esc> :cclose<bar>lclose<CR> | endif
+augroup END
 
 " nerdTree
 nmap <silent>tt :NERDTreeToggle<CR>
-let NERDTreeQuitOnOpen=1
+" let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=1
 
 " NERDTrees File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
 	exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
 	exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
+
+" Obey gitignore
+let g:NERDTreeShowIgnoredStatus = 1
+" Gitignore doesn't seem to actually work properly in nerdtree at this
+" point.  this cuts out a lot of what I don't want.
+let NERDTreeIgnore=['node_modules/*', 'coverage/*', 'build/*']
 
 call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
 call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
@@ -109,6 +138,10 @@ filetype plugin indent on
 set tabstop=2
 set shiftwidth=2
 set expandtab
+
+" So vim-json doesn't hide quotation marks (how is this not default?)
+set conceallevel=0
+
 let g:argwrap_tail_comma = 1
 let g:argwrap_padded_braces = '[{'
 
@@ -116,9 +149,9 @@ let g:argwrap_padded_braces = '[{'
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ }
-let g:user_emmet_leader_key='<Tab>'
 
 " configure emmet
+let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = {
   \  'javascript.jsx' : {
     \      'extends' : 'jsx',
@@ -126,10 +159,10 @@ let g:user_emmet_settings = {
   \}
 
 " CtrlP settings
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --ignore "node_modules" --nocolor -g ""'
+endif
 
 " configure completion
 let g:deoplete#enable_at_startup = 1
@@ -139,19 +172,11 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+" use tabs
+imap <expr><TAB>
+	 \ neosnippet#expandable_or_jumpable() ?
+	 \    "\<Plug>(neosnippet_expand_or_jump)" :
+         \ 	  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 let g:neosnippet#enable_snipmate_compatibility = 1
 
@@ -188,3 +213,5 @@ imap jj <Esc>
 " easy save
 inoremap <leader>s <C-c>:w<cr>
 
+" jump via ctags
+nnoremap <leader>. :CtrlPTag<cr>
