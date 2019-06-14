@@ -114,7 +114,7 @@ alias node='unalias nvm; unalias node; unalias npm; nvm_load; node $@'
 alias npm='unalias nvm; unalias node; unalias npm; nvm_load; npm $@'
 alias nvm='unalias nvm; unalias node; unalias npm; nvm_load; nvm $@'
 
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 # source aliases
 source "$HOME/.aliases"
