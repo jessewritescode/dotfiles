@@ -35,6 +35,7 @@ Plug 'mhinz/vim-grepper'
 Plug 'tpope/vim-abolish'
 Plug 'soramugi/auto-ctags.vim'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
