@@ -1,0 +1,27 @@
+{
+  "session_name": "configs",
+  "windows": [
+    {
+      "panes": [
+        {
+          "shell_command": "nvim .zshrc"
+        }
+      ],
+      "window_name": "zshrc"
+    },
+    {
+      "panes": [
+        {
+          "shell_command": "nvim .config/nvim/init.vim"
+        }
+      ],
+      "window_name": "init.vim"
+    },
+    {
+      "panes": [
+        null
+      ],
+      "window_name": "cmd"
+    }
+  ]
+}
