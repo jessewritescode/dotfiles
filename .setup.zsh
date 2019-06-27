@@ -4,7 +4,7 @@ sudo pacman -S base-devel
 # install yay
 (cd ~/.config-packages && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si)
 
-yay -S oni bat neovim rbenv the_silver_searcher python-neovim npm 
+yay -S oni bat neovim rbenv the_silver_searcher python-neovim npm tmux tmuxp ocsstore nerd-fonts-fira-code
 
 # setup npm and fetch packages
 mkdir -p ~/.npmlocal
