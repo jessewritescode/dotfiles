@@ -177,11 +177,6 @@ endif
 " configure completion
 let g:deoplete#enable_at_startup = 1
 
-" snippets
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
 " use tabs
 imap <expr><TAB>
 	 \ neosnippet#expandable_or_jumpable() ?
@@ -229,8 +224,9 @@ nnoremap <leader>. :Vista finder<cr>
 nmap <silent>tt :Vista!!<CR>
 nmap <silent>TT :NERDTreeToggle<CR>
 
-
+""""""""""""""""""""""""""""""""""""""""""""
 "  Taken from example vim on coc.vim readme.
+""""""""""""""""""""""""""""""""""""""""""""
 
 " if hidden is not set, TextEdit might fail.
 set hidden
@@ -267,10 +263,6 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
