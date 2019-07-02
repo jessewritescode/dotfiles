@@ -1,12 +1,10 @@
 # install packages
-sudo pacman -S yaourt 
-yaourt -S oni bat neovim rbenv fira-code kitty polybar the_silver_searcher rofi python-neovim zathura zathura-pdf-mupdf zathura-djvu zathura-ps zathura-cb perl-anyevent-i3 perl-json-xs jq 
+sudo pacman -S base-devel 
 
-# setup npm and fetch packages
-mkdir -p ~/.npmlocal
-npm config set prefix ~/.npmlocal
+# install yay
+(cd ~/.config-packages && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si)
 
-npm install -g nwb
+yay -S oni bat neovim rbenv the_silver_searcher python-neovim npm tmux tmuxp ocsstore nerd-fonts-fira-code
 
 # setup npm and fetch packages
 mkdir -p ~/.npmlocal
