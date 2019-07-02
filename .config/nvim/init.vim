@@ -45,6 +45,15 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'liuchengxu/vista.vim'
 
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" you will need to do:
+" yarn global add typescript typescript-language-server
+
+Plug 'liuchengxu/vista.vim'
+
 call plug#end()
 
 if exists('g:gui_oni')
