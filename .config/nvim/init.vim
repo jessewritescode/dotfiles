@@ -3,6 +3,7 @@
 " coc-tsserver
 " coc-json
 " coc-snippets
+" coc-yaml
 
 " Auto install vim-plug and plugins 
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -45,6 +46,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " yarn global add typescript typescript-language-server
 
 Plug 'liuchengxu/vista.vim'
+
+Plug 'neovim/node-host'
+Plug 'jkassis/vim-chrome-devtools', { 'do': 'npm install && npm run build' }
+" you will need to do :UpdateRemotePlugins after installing
 
 call plug#end()
 
