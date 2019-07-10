@@ -51,6 +51,7 @@ Plug 'neovim/node-host'
 Plug 'jkassis/vim-chrome-devtools', { 'do': 'npm install && npm run build' }
 " you will need to do :UpdateRemotePlugins after installing
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 call plug#end()
 
 if exists('g:gui_oni')
