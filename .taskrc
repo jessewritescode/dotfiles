@@ -55,3 +55,6 @@ context.work=-private and (+computer or +planning or +phone or +work)
 context.commuting=+errand or +phone
 context.home=-work and -errand
 context=work
+uda.size.type=string
+uda.size.label=Size
+uda.size.values=huge,large,medium,small,tiny
