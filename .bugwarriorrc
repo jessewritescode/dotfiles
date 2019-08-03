@@ -1,0 +1,106 @@
+[general]
+targets = github_work,jira
+# If unspecified, the default taskwarrior config will be used.
+taskrc = ~/.taskrc
+
+# Setting this to true will shorten links with http://da.gd/
+#shorten = False
+
+# Setting this to True will include a link to the ticket in the description
+inline_links = False
+
+# Setting this to True will include a link to the ticket as an annotation
+annotation_links = True
+
+# Setting this to True will include issue comments and author name in task
+# annotations
+annotation_comments = True
+
+# Defines whether or not issues should be matched based upon their description.
+# In legacy mode, we will attempt to match issues to bugs based upon the
+# presence of the '(bw)' marker in the task description.
+# If this is false, we will only select issues having the appropriate UDA
+# fields defined (which is smarter, better, newer, etc..)
+legacy_matching = False
+
+# log.level specifies the verbosity.  The default is DEBUG.
+# log.level can be one of DEBUG, INFO, WARNING, ERROR, CRITICAL, DISABLED
+#log.level = DEBUG
+
+# If log.file is specified, output will be redirected there.  If it remains
+# unspecified, output is sent to sys.stderr
+#log.file = /var/log/bugwarrior.log
+
+# Configure the default description or annotation length.
+#annotation_length = 45
+
+# Use hooks to run commands prior to importing from bugwarrior-pull.
+# bugwarrior-pull will run the commands in the order that they are specified
+# below.
+#
+# pre_import: The pre_import hook is invoked after all issues have been pulled
+# from remote sources, but before they are synced to the TW db. If your
+# pre_import script has a non-zero exit code, the `bugwarrior-pull` command will
+# exit early.
+[hooks]
+# pre_import = /home/someuser/backup.sh, /home/someuser/sometask.sh
+
+# This section is for configuring notifications when bugwarrior-pull runs,
+# and when issues are created, updated, or deleted by bugwarrior-pull.
+# Three backends are currently supported:
+#
+#  - growlnotify (v2)   Mac OS X   "gntp" must be installed
+#  - gobject            Linux      python gobject must be installed
+#
+# To configure, adjust the settings below.  Note that neither of the #
+# "sticky" options have any effect on Linux.  They only work for
+# growlnotify.
+#[notifications]
+# notifications = True
+# backend = growlnotify
+# finished_querying_sticky = False
+# task_crud_sticky = True
+# only_on_new_tasks = True
+
+[github_work]
+service = github
+github.default_priority = H
+github.add_tags = github,{% if githubrepo.startswith('-----') %}work_only{% else %}open_source{% endif %}
+
+# Pull issues from:
+github.username = ------
+
+# I want taskwarrior to include issues from all my repos, except these
+# two because they're spammy or something.
+# github.exclude_repos = project_bar,project_baz
+
+# Working with a large number of projects, instead of excluding most of them I
+# can also simply include just a limited set.
+# github.include_repos = project_foo,project_foz
+
+# Note that login and username can be different:  I can login as me, but
+# scrape issues from an organization's repos.
+#
+# - 'github.login' is the username you ask bugwarrior to
+#   login as.  Set it to your account.
+# - 'github.username' is the github entity you want to pull
+#   issues for.  It could be you, or some other user entirely.
+github.login = -----
+github.token = @oracle:use_keyring
+
+github.include_user_issues = False
+github.include_user_repos = False
+github.query = is:open archived:false involves:------- 
+
+github.description_template = {% if githubtype == 'pull_request' %}PR{% else %}{{githubtype}}{% endif %}-{{githubnumber}} {{githubtitle}} [{{githubrepo}}]
+
+[jira]
+service=jira
+jira.base_uri = https://------
+jira.username = -----
+jira.password = @oracle:use_keyring
+
+jira.query = sprint in openSprints() and sprint not in futureSprints() and project = Platform and component = frontend and status != done and status != Review
+
+jira.add_tags = jira,work,work_only
+jira.description_template = {{jiraid}} {{jirasummary}}

@@ -52,6 +52,14 @@ Plug 'jkassis/vim-chrome-devtools', { 'do': 'npm install && npm run build' }
 " you will need to do :UpdateRemotePlugins after installing
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+
+Plug 'janko/vim-test'
+" run stuff in a tmux pane
+Plug 'christoomey/vim-tmux-runner'
+
+" Per project settings
+Plug 'tpope/vim-projectionist'
+
 call plug#end()
 
 if exists('g:gui_oni')
@@ -99,7 +107,8 @@ endfunction
 let g:NERDTreeShowIgnoredStatus = 1
 " Gitignore doesn't seem to actually work properly in nerdtree at this
 " point.  this cuts out a lot of what I don't want.
-let NERDTreeIgnore=['node_modules/*', 'coverage/*', 'build/*']
+" let NERDTreeIgnore=['node_modules/*', 'coverage/*', 'build/*']
+let NERDTreeIgnore=['node_modules/*', 'coverage/*']
 
 call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
 call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')

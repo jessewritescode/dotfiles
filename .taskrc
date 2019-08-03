@@ -16,6 +16,9 @@ data.location=~/.task
 # server credentials
 include ~/.task/credentials
 
+# generated bugwarrior uds
+include ~/.task/bugwarrior_uda
+
 # Color theme (uncomment one to use)
 #include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/light-16.theme
 #include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/light-256.theme
@@ -50,11 +53,18 @@ alias.dailystatus=status:completed end.after:today all
 alias.punt=modify wait:1d
 alias.someday=mod +someday wait:someday
 
-
-context.work=-private and (+computer or +planning or +phone or +work)
+context.work=-private and (+computer or +planning or +phone or +work or +work_only)
 context.commuting=+errand or +phone
-context.home=-work and -errand
-context=work
+context.home=-errand and -jira and -work_only
 uda.size.type=string
 uda.size.label=Size
 uda.size.values=huge,large,medium,small,tiny
+uda.reviewed.type=date
+uda.reviewed.label=Reviewed
+report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
+report._reviewed.columns=uuid
+report._reviewed.sort=reviewed+,modified+
+report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
+color.tag.github=blue
+color.tag.jira=yellow
+context=home
