@@ -93,6 +93,9 @@ augroup vimrcQfClose
   autocmd FileType qf if mapcheck('<esc>', 'n') ==# '' | nnoremap <buffer><silent> <esc> :cclose<bar>lclose<CR> | endif
 augroup END
 
+" Set syntax to markdown when creating notes with taskopen
+autocmd BufRead,BufNewFile ~/tasknotes/*.txt set syntax=markdown
+
 " nerdTree
 " let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
@@ -338,4 +341,4 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-
+source ~/.config/nvim/abbrev.vim

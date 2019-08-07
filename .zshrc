@@ -6,6 +6,7 @@
 ###############################################################################
 # Set paths
 ###############################################################################
+#export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.npmlocal/bin:$HOME/bin:/Library/TeX/texbin
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.npmlocal/bin:$HOME/bin
 export NODE_PATH=$NODE_PATH:$HOME/.npmlocal/lib/node_modules
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
