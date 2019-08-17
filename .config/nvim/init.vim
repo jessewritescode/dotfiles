@@ -27,11 +27,22 @@ Plug 'lfilho/cosco.vim'
 Plug 'w0rp/ale'
 Plug 'simnalamburt/vim-mundo'
 Plug 'kien/ctrlp.vim'
+
+" perhaps time to remove
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
+
+" and replace with
+Plug 'justinmk/vim-dirvish'
+Plug 'tpope/vim-eunuch'
+Plug 'kristijanhusak/vim-dirvish-git'
+
+" syntax
 Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
 Plug 'mxw/vim-jsx'
+
 Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-grepper'
 Plug 'tpope/vim-abolish'
@@ -40,23 +51,19 @@ Plug 'vimwiki/vimwiki'
 
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-
+Plug 'janko-m/vim-test' " run test from vim
+Plug 'neomake/neomake' " runs make asynchronously in background
+ 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" you will need to do:
-" yarn global add typescript typescript-language-server
-
 Plug 'liuchengxu/vista.vim'
-
 Plug 'neovim/node-host'
 Plug 'jkassis/vim-chrome-devtools', { 'do': 'npm install && npm run build' }
 " you will need to do :UpdateRemotePlugins after installing
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-
 Plug 'janko/vim-test'
 " run stuff in a tmux pane
 Plug 'christoomey/vim-tmux-runner'
-
 " Per project settings
 Plug 'tpope/vim-projectionist'
 
@@ -70,6 +77,18 @@ else
   " settings specific to not oni
 endif
 
+" Vim Test
+autocmd BufRead,BufNewFile ~/src/aero-frontend-stack/app/workspace/**/*.js let g:test#javascript#jest#options = '-c ./resources/jest-config-unit-tests.json'
+let g:test#strategy = 'vtr'
+
+" markdown settings
+augroup markdownSpell
+  autocmd!
+  autocmd FileType markdown setlocal spell
+  autocmd BufRead,BufNewFile *.md setlocal spell
+augroup END
+
+" launage server
 let g:vista_default_executive = 'coc'
 
 let g:grepper = {}
@@ -77,14 +96,11 @@ let g:grepper.tools = ["rg", "notests"]
 let g:grepper.notests = { 'grepprg': 'rg -H --no-heading --vimgrep --type-not tests' . (has('win32') ? ' $* .' : ''),
   \ 'grepformat': '%f:%l:%c:%m',
   \ 'escape':     '\^$.*+?()[]{}|' }
-
 runtime autoload/grepper.vim
 nnoremap <leader>g :GrepperRg<Space>
 nnoremap gr :Grepper -cword -noprompt<CR>
-
 nnoremap <leader>g :Grepper -tool rg<cr>
 nnoremap <leader>G :Grepper -tool rg<cr>
-
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
 
@@ -140,12 +156,12 @@ colorscheme nord
 
 " toggle between number and relativenumber
 function! ToggleNumber()
-    if(&relativenumber == 1)
-        set norelativenumber
-        set number
-    else
-        set relativenumber
-    endif
+  if(&relativenumber == 1)
+    set norelativenumber
+    set number
+  else
+    set relativenumber
+  endif
 endfunc
 
 " Turn on line numbers
@@ -182,10 +198,10 @@ let g:lightline = {
 " configure emmet
 let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = {
-  \  'javascript.jsx' : {
-    \      'extends' : 'jsx',
-    \  },
-  \}
+      \  'javascript.jsx' : {
+      \      'extends' : 'jsx',
+      \  },
+      \}
 
 " CtrlP settings
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
@@ -198,9 +214,9 @@ let g:deoplete#enable_at_startup = 1
 
 " use tabs
 imap <expr><TAB>
-	 \ neosnippet#expandable_or_jumpable() ?
-	 \    "\<Plug>(neosnippet_expand_or_jump)" :
-         \ 	  pumvisible() ? "\<C-n>" : "\<TAB>"
+      \ neosnippet#expandable_or_jumpable() ?
+      \    "\<Plug>(neosnippet_expand_or_jump)" :
+      \ 	  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 let g:neosnippet#enable_snipmate_compatibility = 1
 
@@ -215,9 +231,6 @@ nnoremap <silent>, :call ToggleNumber()<cr>
 
 " normal moode leader maps
 nnoremap <silent> <leader>a :ArgWrap<CR>
-
-" comma insertion... TODO: doesn't work that well.
-autocmd FileType javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
 
 " easy save
 nnoremap <leader>s :w<cr>
@@ -242,6 +255,9 @@ inoremap <leader>s <C-c>:w<cr>
 nnoremap <leader>. :Vista finder<cr>
 nmap <silent>tt :Vista!!<CR>
 nmap <silent>TT :NERDTreeToggle<CR>
+
+" open dirvish
+nnoremap <leader>f :Dirvish<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""
 "  Taken from example vim on coc.vim readme.
@@ -306,10 +322,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -331,6 +343,9 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 nmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
+
+autocmd FileType dirvish nmap <silent><buffer><C-n> <Plug>(dirvish_git_next_file)
+autocmd FileType dirvish nmap <silent><buffer><C-p> <Plug>(dirvish_git_prev_file)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')

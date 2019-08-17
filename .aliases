@@ -2,7 +2,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 alias masterconfig='config checkout master; config cherry-pick -x linux; config push; config checkout linux;'
 alias vi='nvim'
 alias vim='nvim'
-alias cat='bat --style=plain --theme Nord'
+alias cat='pygmentize -O style=native -g'
 alias ls='ls -G'
 alias sprnpm='cp ~/.npmrc{_spr,}'
 alias sprnpmclear='rm ~/.npmrc'
@@ -11,6 +11,9 @@ alias npmdeps='jq -r ".dependencies | to_entries[] | \"$(tput bold)$(tput setaf 
 alias npmdevdeps='jq -r ".devDependencies | to_entries[] | \"$(tput bold)$(tput setaf 2)\(.key)$(tput sgr0)\t$(tput setaf 4)\(.value)$(tput sgr0)\"" package.json | expand -t 35'
 alias task_sync='bugwarrior-pull; task sync' 
 alias notes='taskopen +ACTIVE'
+
 alias tx_config='tmuxp load -y ~/.tmuxp.json'
 alias tx_tasks='tmuxp load -y ~/.task/tmuxp.yaml'
 alias tx_aero='tmuxp load -y ~/src/aero-frontend-stack/'
+
+

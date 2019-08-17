@@ -7,9 +7,13 @@
 # Set paths
 ###############################################################################
 #export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.npmlocal/bin:$HOME/bin:/Library/TeX/texbin
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.npmlocal/bin:$HOME/bin
+export PATH=/usr/local/lib/ruby/gems/2.6.0/bin:/usr/local/opt/ruby/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.npmlocal/bin:$HOME/bin
 export NODE_PATH=$NODE_PATH:$HOME/.npmlocal/lib/node_modules
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+
+export LDFLAGS="-L/usr/local/opt/ruby/lib"
+export CPPFLAGS="-I/usr/local/opt/ruby/include"
+export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
 
 ###############################################################################
 # options
@@ -114,6 +118,19 @@ eval $(thefuck --alias)
 
 # source aliases
 source "$HOME/.aliases"
+
+# extra aliasy functions
+mux(){
+  eval "tmuxinator ${@:2} --suppress-tmux-version-warning"
+}
+
+workspace(){
+  eval "tmuxinator start tx_workspace workspace=$1 --suppress-tmux-version-warning"
+}
+
+
+# alias mux='mux_func'
+
 
 ###############################################################################
 # Key bindings

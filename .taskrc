@@ -67,4 +67,3 @@ report._reviewed.sort=reviewed+,modified+
 report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
 color.tag.github=blue
 color.tag.jira=yellow
-context=home
