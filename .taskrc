@@ -40,6 +40,9 @@ include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/solarized-dark-256.theme
 include ~/.task/holidays_AU
 calendar.holidays=en-AU 
 
+# Macos pomodoro needs filter set explicitly 
+pomodoro.defaultFilter=-private and (+computer or +planning or +phone or +work or +work_only)
+
 # Make searches case insensitive, personal preference
 search.case.sensitive=no
 
@@ -67,3 +70,4 @@ report._reviewed.sort=reviewed+,modified+
 report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
 color.tag.github=blue
 color.tag.jira=yellow
+context=work

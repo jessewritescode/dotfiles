@@ -9,11 +9,13 @@ alias sprnpmclear='rm ~/.npmrc'
 alias npmscripts='jq -r ".scripts | to_entries[] | \"$(tput bold)$(tput setaf 2)\(.key)$(tput sgr0)\t$(tput setaf 4)\(.value)$(tput sgr0)\"" package.json | expand -t 30'
 alias npmdeps='jq -r ".dependencies | to_entries[] | \"$(tput bold)$(tput setaf 2)\(.key)$(tput sgr0)\t$(tput setaf 4)\(.value)$(tput sgr0)\"" package.json | expand -t 35'
 alias npmdevdeps='jq -r ".devDependencies | to_entries[] | \"$(tput bold)$(tput setaf 2)\(.key)$(tput sgr0)\t$(tput setaf 4)\(.value)$(tput sgr0)\"" package.json | expand -t 35'
-alias task_sync='bugwarrior-pull; task sync' 
+
+alias bw='bugwarrior-pull; task sync' 
 alias notes='taskopen +ACTIVE'
 
 alias tx_config='tmuxp load -y ~/.tmuxp.json'
 alias tx_tasks='tmuxp load -y ~/.task/tmuxp.yaml'
 alias tx_aero='tmuxp load -y ~/src/aero-frontend-stack/'
+alias tx_workspace='tmuxp load -y ~/src/aero-frontend-stack/app/workspace/.tmuxp.yaml'
 
 

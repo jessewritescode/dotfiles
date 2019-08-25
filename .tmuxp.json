@@ -12,6 +12,14 @@
     {
       "panes": [
         {
+          "shell_command": "nvim .aliases"
+        }
+      ],
+      "window_name": "aliases"
+    },
+    {
+      "panes": [
+        {
           "shell_command": "nvim .config/nvim/init.vim"
         }
       ],
