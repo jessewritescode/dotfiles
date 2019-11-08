@@ -73,6 +73,8 @@ Plug 'christoomey/vim-tmux-runner'
 " Per project settings
 Plug 'tpope/vim-projectionist'
 
+Plug 'chrisbra/unicode.vim'
+
 call plug#end()
 
 
@@ -175,7 +177,8 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --ignore "node_modules" --nocolor -g ""'
 endif
 
-
+" set default start mode to MRU
+let g:ctrlp_cmd = 'CtrlPMRU'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " JS / IDE 
